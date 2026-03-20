@@ -104,12 +104,67 @@
 					overlayOpacity: 0.85,
 					popupCloserText: '',
 					popupLoaderText: '',
-					selector: '.work-item a.image',
+					selector: '.work-item a.image:not(.insta-img):not(.uplift-img)',
 					usePopupCaption: true,
 					usePopupDefaultStyling: false,
 					usePopupEasyClose: false,
 					usePopupNav: true,
 					windowMargin: (breakpoints.active('<=small') ? 0 : 50)
+				});
+
+				// Instacart gallery (same poptrox style, hidden container)
+				$('#insta-gallery-container').poptrox({
+					caption: function($a) {
+						var idx   = $('.insta-link').index($a) + 1;
+						var total = $('.insta-link').length;
+						return idx + ' / ' + total;
+					},
+					overlayColor: '#2c2c2c',
+					overlayOpacity: 0.85,
+					popupCloserText: '',
+					popupLoaderText: '',
+					selector: '.insta-link',
+					usePopupCaption: true,
+					usePopupDefaultStyling: false,
+					usePopupEasyClose: false,
+					usePopupNav: true,
+					windowMargin: (breakpoints.active('<=small') ? 0 : 50)
+				});
+
+				// Connect Instacart thumbnail to the hidden gallery
+				$('.insta-trigger').on('click', function(e) {
+					e.preventDefault();
+					$('#insta-gallery-container .insta-link').first().trigger('click');
+				});
+
+				// Uplift Gallery
+				$('#uplift-gallery-container').poptrox({
+					caption: function($a) {
+						var idx   = $('.uplift-link').index($a) + 1;
+						var total = $('.uplift-link').length;
+						return idx + ' / ' + total;
+					},
+					overlayColor: '#2c2c2c',
+					overlayOpacity: 0.85,
+					popupCloserText: '',
+					popupLoaderText: '',
+					selector: '.uplift-link',
+					usePopupCaption: true,
+					usePopupDefaultStyling: false,
+					usePopupEasyClose: false,
+					usePopupNav: true,
+					windowMargin: (breakpoints.active('<=small') ? 0 : 50)
+				});
+
+				// Trigger
+				$('.uplift-trigger').on('click', function(e) {
+					e.preventDefault();
+					$('#uplift-gallery-container .uplift-link').first().click();
+				});
+
+				$('.insta-trigger').on('click', function(e) {
+					e.preventDefault();
+					$('#insta-gallery-container .insta-link').first().click();
 				});
 
 			});
